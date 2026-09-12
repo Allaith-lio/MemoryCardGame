@@ -1,0 +1,484 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+body {
+  min-width: 320px;
+  color: rgb(5, 39, 39);
+  background-color: honeydew;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.navContainer {
+  background-color: darkseagreen;
+  height: 12vh;
+}
+
+nav {
+  position: relative;
+  min-height: 100%;
+  text-align: center;
+  padding: 25px;
+  letter-spacing: 5px;
+}
+
+.themeButton {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  padding: 0.55rem 0.9rem;
+  color: rgb(5, 39, 39);
+  background-color: honeydew;
+  border: 1px solid seagreen;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.themeButton:hover,
+.themeButton:focus-visible {
+  color: white;
+  background-color: seagreen;
+}
+
+.startGame {
+  width: min(90%, 900px);
+  margin: 8vh auto 0;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: honeydew;
+  border: 2px solid seagreen;
+  border-radius: 16px;
+}
+
+.rules,
+.playerInput {
+  padding: 1.5rem;
+  background-color: mintcream;
+  border: 1px solid darkseagreen;
+  border-radius: 12px;
+  letter-spacing: 1px;
+}
+
+.playerInput {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.startButton {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 0.8rem 2.5rem;
+  color: white;
+  background-color: seagreen;
+  border: 2px solid seagreen;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.startButton:hover {
+  background-color: darkgreen;
+}
+
+.startButton:focus-visible {
+  outline: 3px solid darkseagreen;
+  outline-offset: 3px;
+}
+
+input,
+select {
+  padding: 12px;
+}
+
+.hidden {
+  display: none !important;
+  transition: 0.5s;
+}
+
+.maingame {
+  background-color: rgb(5, 39, 39);
+  min-height: calc(100vh - 12vh);
+  height: auto;
+  border: 2px solid;
+  overflow-x: hidden;
+}
+
+.cardscontainer {
+  width: min(90%, 420px, 55vh);
+  margin: 0.75rem auto 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.75rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.45rem, 1.5vw, 0.65rem);
+  background-color: rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  perspective: 900px;
+  cursor: pointer;
+  filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.18));
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s ease;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+.front img,
+.back img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.gameInfo {
+  text-align: center;
+  margin: 10px;
+  color: whitesmoke;
+  gap: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  display: inline-block;
+}
+
+.buttouns {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttouns button {
+  grid-column: 1 / -1;
+  justify-self: center;
+  padding: 0.8rem 2.5rem;
+  color: white;
+  background-color: seagreen;
+  border: 2px solid seagreen;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttouns button:hover {
+  background-color: darkgreen;
+}
+
+.svg {
+  width: 35px;
+}
+
+.warringcolor {
+  color: red;
+  transform: scale(1.1);
+  transition: 0.5s ease;
+}
+
+.resultssec {
+  min-height: 88vh;
+  padding: 6rem 1rem;
+  display: grid;
+  place-items: start center;
+  background-color: rgb(5, 39, 39);
+}
+
+.lastresult {
+  width: min(100%, 620px);
+  padding: 3.5rem 2rem;
+  text-align: center;
+  background-color: honeydew;
+  border: 2px solid seagreen;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  animation: resultappear 0.6s ease both;
+}
+
+.resultBadge {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+  padding: 0.45rem 1rem;
+  color: darkgreen;
+  background-color: palegreen;
+  border: 1px solid darkseagreen;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.lastresult h2 {
+  color: rgb(5, 39, 39);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 1px;
+}
+
+.resultMessage {
+  margin-top: 0.8rem;
+  color: seagreen;
+  font-size: 1.1rem;
+}
+
+.resultSummary {
+  margin: 2rem auto;
+  padding: 1.2rem;
+  background-color: mintcream;
+  border: 1px solid darkseagreen;
+  border-radius: 10px;
+}
+
+.resultSummary p {
+  color: darkseagreen;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.resultSummary h3 {
+  margin-top: 0.5rem;
+  color: darkgreen;
+  font-size: 1.7rem;
+}
+
+.bestResultsList {
+  max-height: 280px;
+  margin: 2rem auto;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  overflow-y: auto;
+  color: rgb(5, 39, 39);
+  background-color: mintcream;
+  border: 1px solid darkseagreen;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.bestResultsList li {
+  padding: 0.7rem 0.4rem;
+  border-bottom: 1px solid rgba(46, 139, 87, 0.25);
+  font-weight: bold;
+}
+
+.bestResultsList li:last-child {
+  border-bottom: 0;
+}
+
+.resultActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resultButton {
+  min-width: 160px;
+  padding: 0.8rem 1.2rem;
+  color: white;
+  background-color: seagreen;
+  border: 2px solid seagreen;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.resultButton:hover {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+.resultButton:focus-visible {
+  outline: 3px solid darkseagreen;
+  outline-offset: 3px;
+}
+
+.secondaryButton {
+  color: darkgreen;
+  background-color: transparent;
+}
+
+.secondaryButton:hover {
+  color: white;
+}
+
+@keyframes resultappear {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .resultssec {
+    padding: 3rem 1rem;
+  }
+
+  .lastresult {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .resultButton {
+    width: 100%;
+  }
+}
+
+#errormessage {
+  color: red;
+}
+
+body.dark-mode {
+  color: rgb(232, 245, 238);
+  background-color: rgb(15, 27, 28);
+}
+
+body.dark-mode .navContainer,
+body.dark-mode .maingame,
+body.dark-mode .resultssec {
+  background-color: rgb(15, 27, 28);
+}
+
+body.dark-mode .startGame,
+body.dark-mode .lastresult {
+  background-color: rgb(27, 45, 43);
+  border-color: rgb(104, 180, 133);
+}
+
+body.dark-mode .rules,
+body.dark-mode .playerInput,
+body.dark-mode .resultSummary,
+body.dark-mode .bestResultsList {
+  color: rgb(232, 245, 238);
+  background-color: rgb(37, 61, 57);
+  border-color: rgb(104, 180, 133);
+}
+
+body.dark-mode .lastresult h2,
+body.dark-mode .bestResultsList,
+body.dark-mode .themeButton {
+  color: rgb(232, 245, 238);
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode .themeButton {
+  background-color: rgb(27, 45, 43);
+  border-color: rgb(104, 180, 133);
+}
+
+body.dark-mode .themeButton:hover,
+body.dark-mode .themeButton:focus-visible {
+  background-color: rgb(62, 145, 94);
+}
+
+@media (max-width: 700px) {
+  .navContainer {
+    height: auto;
+  }
+
+  nav {
+    padding: 1rem 5rem 1rem 1rem;
+    letter-spacing: 2px;
+  }
+
+  nav h2 {
+    font-size: clamp(1.2rem, 6vw, 1.6rem);
+  }
+
+  .themeButton {
+    right: 0.75rem;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .startGame {
+    width: min(94%, 520px);
+    margin-top: 1.5rem;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .rules,
+  .playerInput {
+    padding: 1rem;
+  }
+
+  .startButton {
+    width: 100%;
+  }
+
+  .gameInfo {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .cardscontainer {
+    width: min(92%, 420px);
+  }
+
+  .buttouns {
+    gap: 0.75rem;
+    padding: 0 1rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .buttouns button {
+    flex: 1 1 180px;
+    padding: 0.7rem 1rem;
+  }
+
+  .resultssec {
+    padding: 2rem 0.75rem;
+  }
+
+  .lastresult {
+    padding: 2rem 1rem;
+  }
+}

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="navContainer">
+      <nav>
+        <h2>Card-Game</h2>
+        <button
+          class="themeButton"
+          id="themebtn"
+          type="button"
+          aria-label="Enable dark mode"
+        >
+          Dark Mode
+        </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 640 640"
+          class="svg"
+        >
+          <!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+          <path
+            d="M528 320C528 205.1 434.9 112 320 112C205.1 112 112 205.1 112 320C112 434.9 205.1 528 320 528C434.9 528 528 434.9 528 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM436.2 366.3C448 362.7 459.9 372.4 455.8 384.1C436 440 382.7 480.1 320 480.1C257.3 480.1 204 440.1 184.2 384.2C180.1 372.6 192 362.8 203.8 366.4C238.5 377 278 382.9 319.9 382.9C361.9 382.9 401.4 376.9 436.2 366.3zM288 256C288 291.3 273.7 320 256 320C238.3 320 224 291.3 224 256C224 220.7 238.3 192 256 192C273.7 192 288 220.7 288 256zM384 320C366.3 320 352 291.3 352 256C352 220.7 366.3 192 384 192C401.7 192 416 220.7 416 256C416 291.3 401.7 320 384 320z"
+          />
+        </svg>
+      </nav>
+    </div>
+    <section class="startGame">
+      <div class="rules">
+        <p>
+          <b> Rule 1 </b> : Flip two cards. On your turn, flip over any two
+          cards so everyone can see them
+          <br />
+          <b> Rule 2</b> : Keep matching pairs. If the cards match, you keep the
+          pair and get another turn <br />
+          <b> Rule 3</b> : Flip back if they don't match. If they do not match,
+          turn them face down again, and it becomes the next player's turn.
+          <br />
+          <b> Rule 4</b> : Turn Them Back. If the cards do not match, turn them
+          face down again in the same spot, and it is the next player's turn.
+        </p>
+      </div>
+
+      <div class="playerInput">
+        <label for="playerName">Please Enter your Information Here:</label>
+        <input
+          id="playerName"
+          type="text"
+          placeholder="YourName ex:Allaith"
+          required
+        />
+        <input
+          type="number"
+          id="playerAge"
+          placeholder="YourAge ex:20"
+          required
+        />
+        <select name="difficulty" id="slcDificalut">
+          <option value="Hard">Hard</option>
+          <option value="Mudium" selected>Mudium</option>
+          <option value="Easy">Easy</option>
+        </select>
+      </div>
+
+      <button class="startButton" type="button" id="startbtn">
+        Start Game
+      </button>
+      <p id="errormessage"></p>
+    </section>
+
+    <section class="maingame hidden">
+      <div class="gameInfo" id="gameinfo">
+        <h2>Timer: <span id="timer"></span></h2>
+        <h2>Clicks: <span id="sumclick"></span></h2>
+        <h2>Correct Matches: <span id="mathcesresult"></span></h2>
+      </div>
+
+      <div class="cardscontainer">
+        <div class="card" data-index="1">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/1 black.jpg" alt="1 black card" index="5" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="2">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/2 black.jpg" alt="2 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="3">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/3 black.jpg" alt="3 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="4">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/4 black.jpg" alt="4 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="5">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/5 black.jpg" alt="5 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="6">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/6 black.jpg" alt="6 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="7">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/7 black.jpg" alt="7 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="8">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/8 black.jpg" alt="8 black card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="1">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/1 red.jpg" alt="1 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="2">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/2 red.jpg" alt="2 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="3">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/3 red.jpg" alt="3 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="4">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/4 red.jpg" alt="4 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="5">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/5 red.jpg" alt="5 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="6">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/6 red.jpg" alt="6 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="7">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/7 red.jpg" alt="7 red card" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-index="8">
+          <div class="card-inner">
+            <div class="back">
+              <img src="Images/backface.jpg" alt="Hidden card" />
+            </div>
+            <div class="front">
+              <img src="Images/8 red.jpg" alt="8 red card" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttouns">
+        <button id="restartbtn">Restart</button>
+        <button id="backbtn">Back to Main Menu</button>
+      </div>
+    </section>
+
+    <section class="resultssec hidden" id="resultsseec">
+      <div class="lastresult">
+        <p class="resultBadge">Game Complete</p>
+        <h2>Congratulations!😘</h2>
+        <p class="resultMessage">You found every matching card</p>
+
+        <div class="resultSummary">
+          <p>Final result</p>
+          <h3 id="result">Great job!</h3>
+        </div>
+
+        <div class="resultActions">
+          <button class="resultButton" id="playagainbtn" type="button">
+            Save result and play again
+          </button>
+          <button
+            class="resultButton secondaryButton"
+            id="resultbackbtn"
+            type="button"
+          >
+            Get Back To Main Menu
+          </button>
+          <button
+            class="resultButton secondaryButton"
+            id="bestresultbtn"
+            type="button"
+          >
+            Show Best Result
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="resultssec hidden" id="bestresultssec">
+      <div class="lastresult">
+        <p class="resultBadge">Best Results</p>
+        <h2>Players' Results</h2>
+        <p class="resultMessage">
+          Your completed games are saved on this device
+        </p>
+
+        <ol class="bestResultsList" id="bestresultslist"></ol>
+
+        <div class="resultActions">
+          <button
+            class="resultButton secondaryButton"
+            id="bestbackbtn"
+            type="button"
+          >
+            Back To Result
+          </button>
+          <button
+            class="resultButton secondaryButton"
+            id="bestmenubtn"
+            type="button"
+          >
+            Get Back To Main Menu
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <audio src="audio1.mp3" id="audio" loop></audio>
+    <audio src="Flip Card SOUND Effect.mp3" id="flibcard"></audio>
+    <script src="logic.js"></script>
+  </body>
+</html>
