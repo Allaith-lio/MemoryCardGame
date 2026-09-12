@@ -226,7 +226,7 @@ function startGame() {
   correctMatching.textContent = `${rightchecking}`;
 
   setTime(gameinfo, whatthetipe(Select.value));
-  audio.volume = 0.1;
+  audio.volume = 0.3;
   resetAudio();
   localStorage.setItem("playerName", name);
   localStorage.setItem("playerAge", age);
