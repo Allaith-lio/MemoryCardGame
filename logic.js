@@ -13,6 +13,8 @@ const cards = document.querySelectorAll(".card");
 const correctMatching = document.getElementById("mathcesresult");
 const result = document.getElementById("result");
 const resultsec = document.getElementById("resultsseec");
+const gameoversec = document.getElementById("gameoversec");
+const gameoverresult = document.getElementById("gameoverresult");
 const bestresultssec = document.getElementById("bestresultssec");
 const bestresultslist = document.getElementById("bestresultslist");
 const playagainbtn = document.getElementById("playagainbtn");
@@ -65,6 +67,7 @@ function resetGame() {
   startsec.classList.remove("hidden");
   mainGame.classList.add("hidden");
   resultsec.classList.add("hidden");
+  gameoversec.classList.add("hidden");
   bestresultssec.classList.add("hidden");
 }
 
@@ -75,6 +78,16 @@ function showResults() {
   result.textContent = `${sumclick} clicks and ${rightchecking} matching pairs`;
   saveResult();
   resultsec.classList.remove("hidden");
+}
+
+function showGameOver() {
+  clearInterval(timer);
+  lock = true;
+  mainGame.classList.add("hidden");
+  gameoverresult.textContent = `${sumclick} clicks and ${rightchecking} matching pairs`;
+  gameoversec.classList.remove("hidden");
+  audio.pause();
+  flibcardaudio.pause();
 }
 
 function saveResult() {
@@ -185,8 +198,9 @@ function setTime(gameinfo, type) {
   timer = setInterval(() => {
     sec--;
 
-    if (sec < 0) {
-      resetGame();
+    if (sec <= 0) {
+      gameinfo.textContent = "00:00";
+      showGameOver();
       return;
     }
 
@@ -217,6 +231,7 @@ function startGame() {
   startsec.classList.add("hidden");
   mainGame.classList.remove("hidden");
   resultsec.classList.add("hidden");
+  gameoversec.classList.add("hidden");
   bestresultssec.classList.add("hidden");
   resetCards();
   shuffle();
@@ -234,6 +249,7 @@ function startGame() {
 
 function restartGame() {
   resultsec.classList.add("hidden");
+  gameoversec.classList.add("hidden");
   mainGame.classList.remove("hidden");
   resetCards();
   shuffle();
@@ -268,6 +284,12 @@ restartbtn.addEventListener("click", restartGame);
 backmenubtn.addEventListener("click", backToMenu);
 playagainbtn.addEventListener("click", restartGame);
 resultbackbtn.addEventListener("click", backToMenu);
+document
+  .getElementById("gameoverplaybtn")
+  .addEventListener("click", restartGame);
+document
+  .getElementById("gameoverbackbtn")
+  .addEventListener("click", backToMenu);
 bestresultbtn.addEventListener("click", showBestResults);
 bestbackbtn.addEventListener("click", hideBestResults);
 bestmenubtn.addEventListener("click", backToMenu);
