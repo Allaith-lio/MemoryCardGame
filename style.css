@@ -27,10 +27,17 @@ nav {
   letter-spacing: 5px;
 }
 
-.themeButton {
+.navControls {
   position: absolute;
-  top: 50%;
+  top: 42%;
   right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transform: translateY(-50%);
+}
+
+.themeButton {
   padding: 0.55rem 0.9rem;
   color: rgb(5, 39, 39);
   background-color: honeydew;
@@ -38,7 +45,6 @@ nav {
   border-radius: 999px;
   font-weight: bold;
   cursor: pointer;
-  transform: translateY(-50%);
 }
 
 .themeButton:hover,
@@ -430,8 +436,11 @@ body.dark-mode .themeButton:focus-visible {
     font-size: clamp(1.2rem, 6vw, 1.6rem);
   }
 
-  .themeButton {
+  .navControls {
     right: 0.75rem;
+  }
+
+  .themeButton {
     padding: 0.45rem 0.65rem;
     font-size: 0.75rem;
   }
