@@ -26,6 +26,11 @@ const audio = document.getElementById("audio");
 const flibcardaudio = document.getElementById("flibcard");
 const errorMessage = document.getElementById("errormessage");
 const themeButton = document.getElementById("themebtn");
+const soundButton = document.getElementById("soundbtn");
+const clockaudio = document.getElementById("clockaudio");
+const loseraudio = document.getElementById("loseraudio");
+const victoryaudio = document.getElementById("victoryaudio");
+const gameAudios = [audio, flibcardaudio, clockaudio, loseraudio, victoryaudio];
 let sumclick = 0;
 let timer;
 let sec = 60;
@@ -41,6 +46,17 @@ function setTheme(isDarkMode) {
   themeButton.setAttribute(
     "aria-label",
     isDarkMode ? "Enable light mode" : "Enable dark mode",
+  );
+}
+
+function setSoundMuted(isMuted) {
+  gameAudios.forEach((gameAudio) => {
+    gameAudio.muted = isMuted;
+  });
+  soundButton.textContent = isMuted ? "Sound Off" : "Sound On";
+  soundButton.setAttribute(
+    "aria-label",
+    isMuted ? "Unmute game sounds" : "Mute game sounds",
   );
 }
 
@@ -88,6 +104,7 @@ function showGameOver() {
   gameoversec.classList.remove("hidden");
   audio.pause();
   flibcardaudio.pause();
+  loseraudio.play();
 }
 
 function saveResult() {
@@ -158,6 +175,8 @@ function flibcard() {
 
       if (rightchecking === cards.length / 2) {
         showResults();
+        victoryaudio.play();
+        audio.pause();
       }
     } else {
       lock = true;
@@ -201,6 +220,7 @@ function setTime(gameinfo, type) {
     if (sec <= 0) {
       gameinfo.textContent = "00:00";
       showGameOver();
+      clockaudio.pause();
       return;
     }
 
@@ -208,6 +228,10 @@ function setTime(gameinfo, type) {
 
     if (sec < 10) {
       gameinfo.classList.add("warringcolor");
+
+      audio.volume = 0.1;
+      // clockaudio.volume = ;
+      clockaudio.play();
     }
   }, type);
 }
@@ -299,4 +323,11 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("darkMode", String(isDarkMode));
 });
 
+soundButton.addEventListener("click", () => {
+  const isMuted = !gameAudios[0].muted;
+  setSoundMuted(isMuted);
+  localStorage.setItem("soundMuted", String(isMuted));
+});
+
 setTheme(localStorage.getItem("darkMode") === "true");
+setSoundMuted(localStorage.getItem("soundMuted") === "true");
