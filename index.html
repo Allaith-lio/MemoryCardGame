@@ -69,7 +69,7 @@
         />
         <select name="difficulty" id="slcDificalut">
           <option value="Hard">Hard</option>
-          <option value="Mudium" selected>Mudium</option>
+          <option value="Mudium" selected>Medium</option>
           <option value="Easy">Easy</option>
         </select>
       </div>
@@ -284,6 +284,34 @@
             type="button"
           >
             Show Best Result
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="resultssec hidden" id="gameoversec">
+      <div class="lastresult">
+        <p class="resultBadge">Game Over</p>
+        <h2>Time is up!🤬💔</h2>
+        <p class="resultMessage">
+          You did not find all the matching cards in time
+        </p>
+
+        <div class="resultSummary">
+          <p>Final result</p>
+          <h3 id="gameoverresult">0 clicks and 0 matching pairs</h3>
+        </div>
+
+        <div class="resultActions">
+          <button class="resultButton" id="gameoverplaybtn" type="button">
+            Play Again
+          </button>
+          <button
+            class="resultButton secondaryButton"
+            id="gameoverbackbtn"
+            type="button"
+          >
+            Get Back To Main Menu
           </button>
         </div>
       </div>
