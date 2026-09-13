@@ -10,14 +10,24 @@
     <div class="navContainer">
       <nav>
         <h2>Card-Game</h2>
-        <button
-          class="themeButton"
-          id="themebtn"
-          type="button"
-          aria-label="Enable dark mode"
-        >
-          Dark Mode
-        </button>
+        <div class="navControls">
+          <button
+            class="themeButton"
+            id="themebtn"
+            type="button"
+            aria-label="Enable dark mode"
+          >
+            Dark Mode
+          </button>
+          <button
+            class="themeButton soundButton"
+            id="soundbtn"
+            type="button"
+            aria-label="Mute game sounds"
+          >
+            Sound On
+          </button>
+        </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 640 640"
@@ -69,7 +79,7 @@
         />
         <select name="difficulty" id="slcDificalut">
           <option value="Hard">Hard</option>
-          <option value="Mudium" selected>Medium</option>
+          <option value="Mudium" selected>Mudium</option>
           <option value="Easy">Easy</option>
         </select>
       </div>
@@ -347,7 +357,10 @@
     </section>
 
     <audio src="audio1.mp3" id="audio" loop></audio>
+    <audio src="clock clicking.mp3" id="clockaudio"></audio>
     <audio src="Flip Card SOUND Effect.mp3" id="flibcard"></audio>
+    <audio src="Lose sound effects.mp3" id="loseraudio"></audio>
+    <audio src="VICTORY SOUND EFFECT .mp3" id="victoryaudio"></audio>
     <script src="logic.js"></script>
   </body>
 </html>
