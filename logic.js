@@ -75,6 +75,7 @@ function resetCards() {
   secondcard = undefined;
   ifFlippedCard = false;
   lock = false;
+  loseraudio.pause();
 }
 
 function resetGame() {
@@ -297,6 +298,7 @@ function backToMenu() {
   correctMatching.textContent = `${rightchecking}`;
   resetGame();
   audio.pause();
+  loseraudio.pause();
 }
 
 cards.forEach((card) => {
